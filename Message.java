@@ -11,6 +11,9 @@ public class Message {
         this.recipient = recipient;
         this.messageText = messageText;
         this.messageNumber = messageNumber;
+
+        this.messageID = generateMessageID();
+        this.messageHash = createMessageHash();
     }
 
     public boolean checkMessageLength() {
@@ -26,26 +29,30 @@ public class Message {
     }
 
     public String createMessageHash() {
-        String idPart = "00";
-        if (messageID != null) {
-            if (messageID.length() >= 2) {
-                idPart = messageID.substring(0, 2);
-            } else if (messageID.length() == 1) {
-                idPart = "0" + messageID;
-            }
-        }
 
-        String firstWord = "";
-        String lastWord = "";
-        if (messageText != null && !messageText.isBlank()) {
-            String[] words = messageText.trim().split("\\s+");
-            firstWord = words[0].toUpperCase();
-            lastWord = words[words.length - 1].toUpperCase();
-        }
+        String[] words = messageText.split(" ");
 
-        return idPart
+        String firstWord = words[0].toUpperCase();
+        String lastWord = words[words.length - 1].toUpperCase();
+
+        return messageID.substring(0, 2)
                 + ":" + messageNumber
                 + ":" + firstWord + lastWord;
     }
 
+    public String getMessageID() {
+        return messageID;
+    }
+
+    public String getMessageHash() {
+        return messageHash;
+    }
+
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public String getMessageText() {
+        return messageText;
+    }
 }
