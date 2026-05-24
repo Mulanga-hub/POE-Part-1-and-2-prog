@@ -49,12 +49,37 @@ public class Main {
                     }
 
                     String id = msg.generateMessageID();
+                    String hash = msg.createMessageHash();
 
-                    System.out.println("Message sent successfully");
-                    System.out.println("Message ID: " + id);
-                    System.out.println("Message Hash: " + msg.createMessageHash());
+                    System.out.println("Message Hash: " + hash);
 
-                    messages.add("ID: " + id + " | HASH: " + msg.createMessageHash() + " | RECIPIENT: " + recipient);
+                    System.out.println("\nChoose an action:");
+                    System.out.println("1. Send Message");
+                    System.out.println("2. Discard Message");
+                    System.out.println("3. Store Message");
+
+                    int action = input.nextInt();
+                    input.nextLine();
+
+                    switch (action) {
+
+                        case 1:
+                            System.out.println("Message successfully sent.");
+                            messages.add("SENT | ID: " + id + " | HASH: " + hash + " | RECIPIENT: " + recipient);
+                            break;
+
+                        case 2:
+                            System.out.println("Message discarded.");
+                            break;
+
+                        case 3:
+                            System.out.println("Message stored successfully.");
+                            messages.add("STORED | ID: " + id + " | HASH: " + hash + " | RECIPIENT: " + recipient);
+                            break;
+
+                        default:
+                            System.out.println("Invalid option.");
+                    }
 
                     break;
 
