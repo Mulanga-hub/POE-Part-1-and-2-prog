@@ -1,20 +1,15 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 public class ValidationTest {
 
-    @Test
-    public void testUsername() {
-        assertTrue(Validation.checkUsername("abc_d"));
+    public static void main(String[] args) {
+        run("Username", Validation.checkUsername("abc_d"));
+        run("Password", Validation.checkPassword("Password1!"));
+        run("Cell phone", Validation.checkCellPhone("+27831234567"));
+        System.out.println("All Validation tests passed.");
     }
 
-    @Test
-    public void testPassword() {
-        assertTrue(Validation.checkPassword("Password1!"));
-    }
-
-    @Test
-    public void testCellPhone() {
-        assertTrue(Validation.checkCellPhone("+27831234567"));
+    private static void run(String name, boolean condition) {
+        if (!condition) {
+            throw new IllegalStateException(name + " test failed");
+        }
     }
 }

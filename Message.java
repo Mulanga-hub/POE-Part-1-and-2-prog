@@ -26,13 +26,24 @@ public class Message {
     }
 
     public String createMessageHash() {
+        String idPart = "00";
+        if (messageID != null) {
+            if (messageID.length() >= 2) {
+                idPart = messageID.substring(0, 2);
+            } else if (messageID.length() == 1) {
+                idPart = "0" + messageID;
+            }
+        }
 
-        String[] words = messageText.split(" ");
+        String firstWord = "";
+        String lastWord = "";
+        if (messageText != null && !messageText.isBlank()) {
+            String[] words = messageText.trim().split("\\s+");
+            firstWord = words[0].toUpperCase();
+            lastWord = words[words.length - 1].toUpperCase();
+        }
 
-        String firstWord = words[0].toUpperCase();
-        String lastWord = words[words.length - 1].toUpperCase();
-
-        return messageID.substring(0, 2)
+        return idPart
                 + ":" + messageNumber
                 + ":" + firstWord + lastWord;
     }

@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Main {
 
+    static int messageCounter = 0;
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -30,7 +32,8 @@ public class Main {
                     System.out.println("Enter message (max 250 chars):");
                     String text = input.nextLine();
 
-                    int messageNumber = 1;
+                    messageCounter++;
+                    int messageNumber = messageCounter;
 
                     Message msg = new Message("", recipient, text, messageNumber);
 
