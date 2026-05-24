@@ -51,7 +51,7 @@ public class Main {
                     String id = msg.generateMessageID();
                     String hash = msg.createMessageHash();
 
-                    System.out.println("Message Hash: " + hash);
+                    System.out.println("\nMessage Hash: " + hash);
 
                     System.out.println("\nChoose an action:");
                     System.out.println("1. Send Message");
@@ -65,7 +65,7 @@ public class Main {
 
                         case 1:
                             System.out.println("Message successfully sent.");
-                            messages.add("SENT | ID: " + id + " | HASH: " + hash + " | RECIPIENT: " + recipient);
+                            messages.add("ID: " + id + " | HASH: " + hash + " | RECIPIENT: " + recipient + " | MESSAGE: " + text);
                             break;
 
                         case 2:
@@ -73,8 +73,8 @@ public class Main {
                             break;
 
                         case 3:
-                            System.out.println("Message stored successfully.");
-                            messages.add("STORED | ID: " + id + " | HASH: " + hash + " | RECIPIENT: " + recipient);
+                            System.out.println("Message successfully stored.");
+                            messages.add("ID: " + id + " | HASH: " + hash + " | RECIPIENT: " + recipient + " | MESSAGE: " + text);
                             break;
 
                         default:
