@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     static int messageCounter = 0;
+    static java.util.ArrayList<String> messages = new java.util.ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -53,10 +54,21 @@ public class Main {
                     System.out.println("Message ID: " + id);
                     System.out.println("Message Hash: " + msg.createMessageHash());
 
+                    messages.add("ID: " + id + " | HASH: " + msg.createMessageHash() + " | RECIPIENT: " + recipient);
+
                     break;
 
                 case 2:
-                    System.out.println("Coming Soon");
+
+                    if (messages.isEmpty()) {
+                        System.out.println("No messages sent yet.");
+                    } else {
+                        System.out.println("Recently sent messages:");
+                        for (String m : messages) {
+                            System.out.println(m);
+                        }
+                    }
+
                     break;
 
                 case 3:
