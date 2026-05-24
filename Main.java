@@ -2,75 +2,43 @@ import java.util.Scanner;
 
 public class Main {
 
-    static String registeredUsername;
-    static String registeredPassword;
-    static String registeredCell;
-
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
-        // REGISTRATION
-        System.out.println("=== USER REGISTRATION ===");
+        int choice;
 
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
+        System.out.println("Welcome to QuickChat");
 
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
+        do {
 
-        System.out.print("Enter cell number (+27...): ");
-        String cell = scanner.nextLine();
+            System.out.println("\nChoose an option:");
+            System.out.println("1. Send Message");
+            System.out.println("2. Show recently sent messages");
+            System.out.println("3. Quit");
 
-        System.out.println(registerUser(username, password, cell));
+            choice = input.nextInt();
+            input.nextLine();
 
-        // LOGIN
-        System.out.println("\n=== USER LOGIN ===");
+            switch (choice) {
 
-        System.out.print("Enter username: ");
-        String loginUsername = scanner.nextLine();
+                case 1:
+                    System.out.println("Send Message selected");
+                    break;
 
-        System.out.print("Enter password: ");
-        String loginPassword = scanner.nextLine();
+                case 2:
+                    System.out.println("Coming Soon");
+                    break;
 
-        boolean loginSuccess = loginUser(loginUsername, loginPassword);
-        System.out.println(returnLoginStatus(loginSuccess));
+                case 3:
+                    System.out.println("Goodbye!");
+                    break;
 
-        System.out.println("User program finished");
+                default:
+                    System.out.println("Invalid option");
+            }
 
-        scanner.close();
-    }
+        } while (choice != 3);
 
-    public static String registerUser(String username, String password, String cell) {
-
-        if (!Validation.checkUsername(username)) {
-            return "Username is not correctly formatted";
-        }
-
-        if (!Validation.checkPassword(password)) {
-            return "Password is not correctly formatted";
-        }
-
-        if (!Validation.checkCellPhone(cell)) {
-            return "Cell phone number incorrectly formatted";
-        }
-
-        registeredUsername = username;
-        registeredPassword = password;
-        registeredCell = cell;
-
-        return "User successfully registered";
-    }
-
-    public static boolean loginUser(String username, String password) {
-        return username.equals(registeredUsername) && password.equals(registeredPassword);
-    }
-
-    public static String returnLoginStatus(boolean status) {
-        if (status) {
-            return "Welcome, it is great to see you again.";
-        } else {
-            return "Username or password incorrect, please try again.";
-        }
     }
 }
