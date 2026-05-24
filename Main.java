@@ -23,7 +23,33 @@ public class Main {
             switch (choice) {
 
                 case 1:
-                    System.out.println("Send Message selected");
+
+                    System.out.println("Enter recipient number:");
+                    String recipient = input.nextLine();
+
+                    System.out.println("Enter message (max 250 chars):");
+                    String text = input.nextLine();
+
+                    int messageNumber = 1;
+
+                    Message msg = new Message("", recipient, text, messageNumber);
+
+                    if (!msg.checkMessageLength()) {
+                        System.out.println("Message exceeds 250 characters");
+                        break;
+                    }
+
+                    if (!msg.checkRecipientCell()) {
+                        System.out.println("Invalid recipient number format");
+                        break;
+                    }
+
+                    String id = msg.generateMessageID();
+
+                    System.out.println("Message sent successfully");
+                    System.out.println("Message ID: " + id);
+                    System.out.println("Message Hash: " + msg.createMessageHash());
+
                     break;
 
                 case 2:
