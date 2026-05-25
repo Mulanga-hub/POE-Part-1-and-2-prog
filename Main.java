@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
 
@@ -65,7 +67,14 @@ public class Main {
 
                         case 1:
                             System.out.println("Message successfully sent.");
-                            messages.add("ID: " + id + " | HASH: " + hash + " | RECIPIENT: " + recipient + " | MESSAGE: " + text);
+
+                            messages.add(
+                                    "ID: " + id +
+                                    " | HASH: " + hash +
+                                    " | RECIPIENT: " + recipient +
+                                    " | MESSAGE: " + text
+                            );
+
                             break;
 
                         case 2:
@@ -74,7 +83,16 @@ public class Main {
 
                         case 3:
                             System.out.println("Message successfully stored.");
-                            messages.add("ID: " + id + " | HASH: " + hash + " | RECIPIENT: " + recipient + " | MESSAGE: " + text);
+
+                            messages.add(
+                                    "ID: " + id +
+                                    " | HASH: " + hash +
+                                    " | RECIPIENT: " + recipient +
+                                    " | MESSAGE: " + text
+                            );
+
+                            storeMessageToJSON(id, hash, recipient, text);
+
                             break;
 
                         default:
@@ -106,5 +124,27 @@ public class Main {
 
         } while (choice != 3);
 
+    }
+
+    public static void storeMessageToJSON(String id, String hash, String recipient, String text) {
+
+        try {
+
+            FileWriter writer = new FileWriter("messages.json", true);
+
+            writer.write("{\n");
+            writer.write("\"id\": \"" + id + "\",\n");
+            writer.write("\"hash\": \"" + hash + "\",\n");
+            writer.write("\"recipient\": \"" + recipient + "\",\n");
+            writer.write("\"message\": \"" + text + "\"\n");
+            writer.write("}\n\n");
+
+            writer.close();
+
+            System.out.println("Message stored in JSON file.");
+
+        } catch (IOException e) {
+            System.out.println("Error writing to file.");
+        }
     }
 }
